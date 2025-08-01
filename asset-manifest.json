@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/NirogGyan/static/css/main.6efeafa0.css",
+    "main.js": "/NirogGyan/static/js/main.f396c198.js",
+    "index.html": "/NirogGyan/index.html",
+    "main.6efeafa0.css.map": "/NirogGyan/static/css/main.6efeafa0.css.map",
+    "main.f396c198.js.map": "/NirogGyan/static/js/main.f396c198.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6efeafa0.css",
+    "static/js/main.f396c198.js"
+  ]
+}
