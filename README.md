@@ -103,6 +103,3 @@ This project is built as part of the **NirogGyan Frontend Assignment** focusing 
     - Solution: Implemented a blockedSlots storage to keep track of permanently blocked slots.
   - **Challenge**: Responsive design for time selectors and appointment list.
     - Solution: Used Bootstrap grid system and flex utilities.
-
-## License
-- This project is for educational and assignment purposes only.
