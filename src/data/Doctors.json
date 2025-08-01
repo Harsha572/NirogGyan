@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Srinivas Reddy",
+    "specialization": "Neurosurgery",
+    "hospital": "Apollo Hospitals",
+    "location": "Jubilee Hills",
+    "image": "/images/doc1.png",
+    "schedule": "Mon-Fri, 10:00 AM - 5:00 PM",
+    "availability": "Fully Booked"
+  },
+  {
+    "id": 2,
+    "name": "Dr. Sunitha Devi",
+    "specialization": "Orthopedics",
+    "hospital": "Yashoda Hospitals",
+    "location": "Somajiguda & Secunderabad",
+    "image": "/images/doc2.png",
+    "schedule": "Mon-Fri, 10:00 AM - 5:00 PM",
+    "availability": "Available Today"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Arjun Sarkaar",
+    "specialization": "Forensic Medicine & Toxicology",
+    "hospital": "Care Hospitals",
+    "location": "Banjara Hills",
+    "image": "/images/doc3.png",
+    "schedule": "Mon-Fri, 10:00 AM - 5:00 PM",
+    "availability": "On Leave"
+  },
+  {
+    "id": 4,
+    "name": "Dr. Devaratha",
+    "specialization": "Emergency Medicine",
+    "hospital": "KIMS Hospitals",
+    "location": "Secunderabad",
+    "image": "/images/doc4.png",
+    "schedule": "Tue-Sat, 9:00 AM - 3:00 PM",
+    "availability": "On Leave"
+  },
+  {
+    "id": 5,
+    "name": "Dr. Honey Reddy",
+    "specialization": "General Dentistry",
+    "hospital": "AIG Hospitals",
+    "location": "Gachibowli",
+    "image": "/images/doc5.png",
+    "schedule": "Tue-Sat, 9:00 AM - 3:00 PM",
+    "availability": "Available Today"
+  },
+  {
+    "id": 6,
+    "name": "Dr. Srivallika",
+    "specialization": "General Dentistry",
+    "hospital": "Rainbow Children's Hospital",
+    "location": "Banjara Hills",
+    "image": "/images/doc6.png",
+    "schedule": "Tue-Sat, 9:00 AM - 3:00 PM",
+    "availability": "Fully Booked"
+  },
+  {
+    "id": 7,
+    "name": "Dr. Achyutha",
+    "specialization": "General Medicine",
+    "hospital": "Continental Hospitals",
+    "location": "Gachibowli",
+    "image": "/images/doc7.png",
+    "schedule": "Mon-Fri, 10:00 AM - 5:00 PM",
+    "availability": "Available Today"
+  },
+  {
+    "id": 8,
+    "name": "Dr. Chinny Reddy",
+    "specialization": "Cardiology",
+    "hospital": "Sunshine Hospitals",
+    "location": "Paradise Circle",
+    "image": "/images/doc8.png",
+    "schedule": "Mon-Fri, 10:00 AM - 5:00 PM",
+    "availability": "On Leave"
+  },
+  {
+    "id": 9,
+    "name": "Dr. Pranava Reddy",
+    "specialization": "Pediatrics",
+    "hospital": "Medicover Hospitals",
+    "location": "Hi-Tech City",
+    "image": "/images/doc9.png",
+    "schedule": "Mon-Fri, 10:00 AM - 5:00 PM",
+    "availability": "Fully Booked"
+  },
+  {
+    "id": 10,
+    "name": "Dr. Himanshu Reddy",
+    "specialization": "ENT",
+    "hospital": "Global Hospitals",
+    "location": "L.B. Nagar",
+    "image": "/images/doc10.png",
+    "schedule": "Tue-Sat, 9:00 AM - 3:00 PM",
+    "availability": "Available Today"
+  },
+  {
+    "id": 11,
+    "name": "Dr. Ramesh Kumar",
+    "specialization": "Cardiologist",
+    "availability": "Available Today",
+    "schedule": "Mon-Fri, 10:00 AM - 5:00 PM",
+    "hospital": "City Heart Care",
+    "location": "Hyderabad",
+    "image": "/images/doc11.png"
+  },
+  {
+    "id": 12,
+    "name": "Dr. Anita Sharma",
+    "specialization": "Dermatologist",
+    "availability": "Fully Booked",
+    "schedule": "Tue-Sat, 9:00 AM - 3:00 PM",
+    "hospital": "Skin & Hair Clinic",
+    "location": "Hyderabad",
+    "image": "/images/doc12.png"
+  },
+  {
+    "id": 13,
+    "name": "Dr. Mohan Rao",
+    "specialization": "Orthopedic",
+    "availability": "On Leave",
+    "schedule": "Mon-Fri, 11:00 AM - 4:00 PM",
+    "hospital": "Bone Care Hospital",
+    "location": "Hyderabad",
+    "image": "/images/doc13.png"
+  }
+]
