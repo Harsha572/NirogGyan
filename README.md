@@ -73,15 +73,14 @@ This project is built as part of the **NirogGyan Frontend Assignment** focusing 
 ## How to Run Locally
 
 1. Clone this repository:
-   ```bash
-   git clone https://github.com/Harsha572/niroggyan.git
+   ```git clone https://github.com/Harsha572/niroggyan.git
    cd niroggyan-healthcare```
 
 2. Install dependencies:
-  npm install
-  Start the development server:
-    npm start
-  Open the app in browser at http://localhost:3000.
+  - npm install
+  - Start the development server:
+    - npm start
+  - Open the app in browser at http://localhost:3000.
 
 
 ## Improvements with More Time
