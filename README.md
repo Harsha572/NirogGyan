@@ -76,25 +76,18 @@ This project is built as part of the **NirogGyan Frontend Assignment** focusing 
    ```
    git clone https://github.com/Harsha572/niroggyan.git
    cd niroggyan-healthcare```
-
 2. Install dependencies:
     - npm install
-  - Start the development server:
+3. Start the development server:
     - npm start
-  - Open the app in browser at http://localhost:3000.
-
+4. Open the app in browser at http://localhost:3000.
 
 ## Improvements with More Time
-  - **Authentication**:
-    - Implement login/registration for users and doctors.
-  - **Backend API**:
-    - Move appointments and doctors data to Node.js/Express or Firebase.
-  - **Advanced Scheduling**:
-    - Add weekly schedules for doctors and holiday management.
-  - **Unit Testing**:
-    - Add Jest and React Testing Library tests.
-  - **UI Enhancements**:
-    - Use Tailwind CSS or Material-UI for a more modern look.
+  - **Authentication**: Implement login/registration for users and doctors.
+  - **Backend API**: Move appointments and doctors data to Node.js/Express or Firebase.
+  - **Advanced Scheduling**: Add weekly schedules for doctors and holiday management.
+  - **Unit Testing**: Add Jest and React Testing Library tests.
+  - **UI Enhancements**: Use Tailwind CSS or Material-UI for a more modern look.
 
 ## Challenges Faced and Solutions
   - **Challenge**: Managing appointments without a real backend.
@@ -103,3 +96,7 @@ This project is built as part of the **NirogGyan Frontend Assignment** focusing 
     - Solution: Implemented a blockedSlots storage to keep track of permanently blocked slots.
   - **Challenge**: Responsive design for time selectors and appointment list.
     - Solution: Used Bootstrap grid system and flex utilities.
+
+## Status
+  - This project is still under development.
+  - It will be linked to a backend API and upgraded to a full-stack application with enhanced responsiveness and advanced features.
