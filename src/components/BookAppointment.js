@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import doctorsData from '../data/Doctors';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
 
@@ -19,6 +19,7 @@ function BookAppointment() {
   });
   const [success, setSuccess] = useState(false);
   const [remainingSlots, setRemainingSlots] = useState(6);
+  const [bookedSlots, setBookedSlots] = useState([]);
 
   useEffect(() => {
     if (doctor?.availability === 'Fully Booked' || doctor?.availability === 'On Leave') {
@@ -36,9 +37,18 @@ function BookAppointment() {
 
     if (name === 'date') {
       const appointments = JSON.parse(localStorage.getItem('appointments')) || {};
+      const blockedSlots = JSON.parse(localStorage.getItem('blockedSlots')) || {};
+
       const doctorAppointments = appointments[doctor.id] || [];
-      const countForDay = doctorAppointments.filter(app => app.date === value).length;
-      setRemainingSlots(6 - countForDay);
+      const blockedForDoctor = blockedSlots[doctor.id] || [];
+
+      const bookedForDay = new Set([
+        ...doctorAppointments.filter(app => app.date === value).map(app => app.time),
+        ...blockedForDoctor.filter(slot => slot.startsWith(value)).map(slot => slot.split('-')[1])
+      ]);
+
+      setBookedSlots([...bookedForDay]);
+      setRemainingSlots(6 - bookedForDay.size);
     }
   };
 
@@ -48,20 +58,14 @@ function BookAppointment() {
     const appointmentDate = formData.date;
     const appointmentTime = `${formData.hour}:${formData.minute} ${formData.meridian}`;
 
-    // Load previous appointments
     const appointments = JSON.parse(localStorage.getItem('appointments')) || {};
-
-    // Get this doctor's appointments
     const doctorAppointments = appointments[doctor.id] || [];
 
-    // Limit 6 bookings per day
-    const countForDay = doctorAppointments.filter(app => app.date === appointmentDate).length;
-    if (countForDay >= 6) {
+    if (doctorAppointments.filter(app => app.date === appointmentDate).length >= 6) {
       alert('This doctor already has 6 appointments for that day.');
       return;
     }
 
-    // Check duplicate booking or blocked slot
     const blockedSlots = JSON.parse(localStorage.getItem('blockedSlots')) || {};
     const blockedForDoctor = blockedSlots[doctor.id] || [];
     const duplicate = doctorAppointments.some(app => app.date === appointmentDate && app.time === appointmentTime);
@@ -91,10 +95,15 @@ function BookAppointment() {
   };
 
   return (
-    <Container className="mt-4" style={{ maxWidth: '600px' }}>
-      <h3>Book Appointment with {doctor.name}</h3>
+    <Container className="mt-4" style={{ maxWidth: '700px' }}>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3>Book Appointment with {doctor.name}</h3>
+        <Link to={`/doctor/${doctor.id}`}>
+          <Button variant="secondary" size="sm">← Back</Button>
+        </Link>
+      </div>
       {success && <Alert variant="success">Appointment booked successfully!</Alert>}
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ maxWidth: '500px', marginLeft: "20px" }}>
         <Form.Group className="mb-3">
           <Form.Label>Patient Name</Form.Label>
           <Form.Control
@@ -125,15 +134,27 @@ function BookAppointment() {
             onChange={handleChange}
           />
           {formData.date && (
-            <span className={`badge ${remainingSlots <= 0 ? 'bg-danger' : 'bg-success'}`}>
-              {remainingSlots <= 0 ? "No slots left" : `${remainingSlots} slots remaining`}
-            </span>
-          )
-        }
+            <>
+              <span className={`badge ${remainingSlots <= 0 ? 'bg-danger' : 'bg-success'} mt-2`}>
+                {remainingSlots <= 0 ? "No slots left" : `${remainingSlots} slots remaining`}
+              </span>
+              {bookedSlots.length > 0 && (
+                <div className="mt-3">
+                  <h6 className="mb-1 text-primary">Booked Slots on <b>{formData.date}</b></h6>
+                  <small className="text-muted d-block mb-2">Please choose a time slot other than these:</small>
+                  <div className="d-flex flex-wrap gap-2">
+                    {bookedSlots.map((slot, index) => (
+                      <span key={index} className="badge bg-danger">{slot}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
+          )}
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Time</Form.Label>
-          <div className="d-flex gap-2">
+          <div className="d-flex flex-wrap gap-2">
             <Form.Select name="hour" value={formData.hour} onChange={handleChange}>
               {[...Array(12)].map((_, i) => (
                 <option key={i+1} value={i+1}>{i+1}</option>
@@ -160,7 +181,7 @@ function BookAppointment() {
             onChange={handleChange}
           />
         </Form.Group>
-        <Button type="submit" variant="success">
+        <Button type="submit" variant="success" className="w-100">
           Confirm Booking
         </Button>
       </Form>

@@ -6,7 +6,7 @@ import './Doctors.css';
 
 function DoctorsList() {
   const [doctors, setDoctors] = useState([]);
-  const [searchName, setSearchName] = useState('');
+  const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('');
 
@@ -15,59 +15,58 @@ function DoctorsList() {
   }, []);
 
   const filteredDoctors = doctors.filter((d) => {
-    const matchesName = d.name.toLowerCase().includes(searchName.toLowerCase());
+    const matchesName = d.name.toLowerCase().includes(search.toLowerCase());
     const matchesStatus = statusFilter ? d.availability === statusFilter : true;
     const matchesDepartment = departmentFilter ? d.specialization === departmentFilter : true;
     return matchesName && matchesStatus && matchesDepartment;
   });
 
-  const statuses = [...new Set(doctors.map((d) => d.availability))];
-  const departments = [...new Set(doctors.map((d) => d.specialization))];
+  const uniqueDepartments = [...new Set(doctors.map((d) => d.specialization))];
 
   return (
     <Container className="mt-4">
-      <h2 className="mb-4">Doctor List</h2>
-      <Row className="mb-4">
-        <Col md={4}>
+      <h2 className="mb-4 text-center">Doctor List</h2>
+      <Row className="mb-4 g-2">
+        <Col xs={12} md={6} lg={4}>
           <Form.Control
             type="text"
             placeholder="Search by name"
-            value={searchName}
-            onChange={(e) => setSearchName(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </Col>
-        <Col md={4}>
+        <Col xs={6} md={3} lg={4}>
           <Form.Select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-            <option value="">Select Status</option>
-            {statuses.map((status, idx) => (
-              <option key={idx} value={status}>{status}</option>
-            ))}
+            <option value="">All Status</option>
+            <option value="Available Today">Available Today</option>
+            <option value="Fully Booked">Fully Booked</option>
+            <option value="On Leave">On Leave</option>
           </Form.Select>
         </Col>
-        <Col md={4}>
+        <Col xs={6} md={3} lg={4}>
           <Form.Select value={departmentFilter} onChange={(e) => setDepartmentFilter(e.target.value)}>
-            <option value="">Select Department</option>
-            {departments.map((dept, idx) => (
-              <option key={idx} value={dept}>{dept}</option>
+            <option value="">All Departments</option>
+            {uniqueDepartments.map((dep, idx) => (
+              <option key={idx} value={dep}>{dep}</option>
             ))}
           </Form.Select>
         </Col>
       </Row>
       <Row>
         {filteredDoctors.map((doctor) => (
-          <Col md={4} key={doctor.id} className="mb-4">
-            <Card className="doctor-card d-flex flex-row align-items-center shadow-sm" style={{borderStyle: "none"}}>
+          <Col xs={12} md={6} lg={4} key={doctor.id} className="mb-4">
+            <Card className="doctor-card p-2 h-100 d-flex flex-column flex-sm-row align-items-center">
               <Card.Img
                 src={doctor.image}
-                style={{ width: "200px", height: "200px", borderRadius: "30px", objectFit: "cover" }}
-                className="p-2"
+                className="p-2 img-fluid"
+                style={{ width: "150px", height: "150px", objectFit: "cover", borderRadius: "12px" }}
               />
-              <Card.Body>
+              <Card.Body className="text-center text-sm-start">
                 <Card.Title>{doctor.name}</Card.Title>
                 <Card.Text>{doctor.specialization}</Card.Text>
                 <p><b>Status:</b> {doctor.availability}</p>
                 <Link to={`/doctor/${doctor.id}`}>
-                  <Button variant="primary">View Profile</Button>
+                  <Button variant="primary" className="w-100">View Profile</Button>
                 </Link>
               </Card.Body>
             </Card>

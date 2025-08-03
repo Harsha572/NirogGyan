@@ -1,9 +1,14 @@
 .doctor-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.doctor-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.doctor-card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+@media (max-width: 768px) {
+  .doctor-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
