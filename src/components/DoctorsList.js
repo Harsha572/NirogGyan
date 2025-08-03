@@ -26,7 +26,9 @@ function DoctorsList() {
   return (
     <Container className="mt-4">
       <h2 className="mb-4 text-center">Doctor List</h2>
-      <Row className="mb-4 g-2">
+
+      {/* Filters Row */}
+      <Row className="mb-4 g-2 justify-content-center">
         <Col xs={12} md={6} lg={4}>
           <Form.Control
             type="text"
@@ -52,26 +54,32 @@ function DoctorsList() {
           </Form.Select>
         </Col>
       </Row>
+
+      {/* Doctors List */}
       <Row>
-        {filteredDoctors.map((doctor) => (
-          <Col xs={12} md={6} lg={4} key={doctor.id} className="mb-4">
-            <Card className="doctor-card p-2 h-100 d-flex flex-column flex-sm-row align-items-center">
-              <Card.Img
-                src={doctor.image}
-                className="p-2 img-fluid"
-                style={{ width: "150px", height: "150px", objectFit: "cover", borderRadius: "12px" }}
-              />
-              <Card.Body className="text-center text-sm-start">
-                <Card.Title>{doctor.name}</Card.Title>
-                <Card.Text>{doctor.specialization}</Card.Text>
-                <p><b>Status:</b> {doctor.availability}</p>
-                <Link to={`/doctor/${doctor.id}`}>
-                  <Button variant="primary" className="w-100">View Profile</Button>
-                </Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
+        {filteredDoctors.length === 0 ? (
+          <p className="text-center">No doctors found.</p>
+        ) : (
+          filteredDoctors.map((doctor) => (
+            <Col xs={12} sm={6} lg={4} key={doctor.id} className="mb-4">
+              <Card className="doctor-card p-3 h-100 d-flex flex-column flex-md-row align-items-center">
+                <Card.Img
+                  src={doctor.image}
+                  className="img-fluid mb-3 mb-md-0"
+                  style={{ width: "150px", height: "150px", objectFit: "cover", borderRadius: "12px" }}
+                />
+                <Card.Body className="text-center text-md-start">
+                  <Card.Title>{doctor.name}</Card.Title>
+                  <Card.Text>{doctor.specialization}</Card.Text>
+                  <p><b>Status:</b> {doctor.availability}</p>
+                  <Link to={`/doctor/${doctor.id}`}>
+                    <Button variant="primary" className="w-100">View Profile</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
+        )}
       </Row>
     </Container>
   );

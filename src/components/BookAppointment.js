@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import doctorsData from '../data/Doctors';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Alert, Row, Col, Badge } from 'react-bootstrap';
 
 function BookAppointment() {
   const { id } = useParams();
@@ -95,35 +95,43 @@ function BookAppointment() {
   };
 
   return (
-    <Container className="mt-4" style={{ maxWidth: '700px' }}>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Book Appointment with {doctor.name}</h3>
-        <Link to={`/doctor/${doctor.id}`}>
-          <Button variant="secondary" size="sm">← Back</Button>
-        </Link>
-      </div>
+    <Container className="mt-4">
+      <Row className="mb-3">
+        <Col xs={12} className="d-flex justify-content-between align-items-center">
+          <h3 className="mb-0">Book Appointment with {doctor.name}</h3>
+          <Link to={`/doctor/${doctor.id}`}>
+            <Button variant="secondary" size="sm">← Back</Button>
+          </Link>
+        </Col>
+      </Row>
       {success && <Alert variant="success">Appointment booked successfully!</Alert>}
-      <Form onSubmit={handleSubmit} style={{ maxWidth: '500px', marginLeft: "20px" }}>
-        <Form.Group className="mb-3">
-          <Form.Label>Patient Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="name"
-            value={formData.name}
-            required
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={formData.email}
-            required
-            onChange={handleChange}
-          />
-        </Form.Group>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col xs={12}>
+            <Form.Group className="mb-3">
+              <Form.Label>Patient Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={formData.name}
+                required
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={12} md={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={formData.email}
+                required
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
         <Form.Group className="mb-3">
           <Form.Label>Date</Form.Label>
           <Form.Control
@@ -135,9 +143,9 @@ function BookAppointment() {
           />
           {formData.date && (
             <>
-              <span className={`badge ${remainingSlots <= 0 ? 'bg-danger' : 'bg-success'} mt-2`}>
+              <Badge bg={remainingSlots <= 0 ? 'danger' : 'success'} className="mt-2">
                 {remainingSlots <= 0 ? "No slots left" : `${remainingSlots} slots remaining`}
-              </span>
+              </Badge>
               {bookedSlots.length > 0 && (
                 <div className="mt-3">
                   <h6 className="mb-1 text-primary">Booked Slots on <b>{formData.date}</b></h6>
@@ -154,21 +162,27 @@ function BookAppointment() {
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Time</Form.Label>
-          <div className="d-flex flex-wrap gap-2">
-            <Form.Select name="hour" value={formData.hour} onChange={handleChange}>
-              {[...Array(12)].map((_, i) => (
-                <option key={i+1} value={i+1}>{i+1}</option>
-              ))}
-            </Form.Select>
-            <Form.Select name="minute" value={formData.minute} onChange={handleChange}>
-              <option value="00">00</option>
-              <option value="30">30</option>
-            </Form.Select>
-            <Form.Select name="meridian" value={formData.meridian} onChange={handleChange}>
-              <option value="AM">AM</option>
-              <option value="PM">PM</option>
-            </Form.Select>
-          </div>
+          <Row className="g-2">
+            <Col xs={4}>
+              <Form.Select name="hour" value={formData.hour} onChange={handleChange}>
+                {[...Array(12)].map((_, i) => (
+                  <option key={i+1} value={i+1}>{i+1}</option>
+                ))}
+              </Form.Select>
+            </Col>
+            <Col xs={4}>
+              <Form.Select name="minute" value={formData.minute} onChange={handleChange}>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </Form.Select>
+            </Col>
+            <Col xs={4}>
+              <Form.Select name="meridian" value={formData.meridian} onChange={handleChange}>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </Form.Select>
+            </Col>
+          </Row>
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Reason for Appointment</Form.Label>

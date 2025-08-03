@@ -59,19 +59,21 @@ function DoctorProfile() {
 
   return (
     <Container className="mt-4">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Doctor Profile</h3>
-        <Link to="/">
-          <Button variant="secondary" size="sm">← Back</Button>
-        </Link>
-      </div>
+      <Row className="mb-3">
+        <Col xs={12} className="d-flex justify-content-between align-items-center">
+          <h3 className="mb-0">Doctor Profile</h3>
+          <Link to="/">
+            <Button variant="secondary" size="sm">← Back</Button>
+          </Link>
+        </Col>
+      </Row>
       <Row>
         <Col xs={12} md={8} className="mb-3">
-          <Card className="border-0 shadow-sm">
+          <Card className="border-0 p-3 shadow-sm">
             <Card.Img 
               src={doctor.image} 
-              className="img-fluid rounded mx-auto mt-3"
-              style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }} 
+              className="img-fluid rounded mt-3 mr-3"
+              style={{ maxHeight: "400px", maxWidth: "400px"}} 
             />
             <Card.Body>
               <Card.Title>{doctor.name}</Card.Title>
@@ -81,9 +83,8 @@ function DoctorProfile() {
               <Card.Text><b>Status:</b> {doctor.availability}</Card.Text>
               <Card.Text><b>Working Hours:</b> {doctor.schedule}</Card.Text>
               <Link to={`/book/${doctor.id}`}>
-                <Button variant="primary" className="w-100">Book Appointment</Button>
+                <Button variant="primary" className="w-40">Book Appointment</Button>
               </Link>
-
             </Card.Body>
           </Card>
         </Col>
@@ -95,7 +96,7 @@ function DoctorProfile() {
             <ListGroup>
               {doctorAppointments.map((app, idx) => (
                 <ListGroup.Item key={idx} className="d-flex justify-content-between align-items-start flex-wrap">
-                  <div>
+                  <div className="pe-2">
                     <b>{app.name}</b><br/>
                     {app.date}, {app.time}<br/>
                     Reason: {app.reason}<br/>
